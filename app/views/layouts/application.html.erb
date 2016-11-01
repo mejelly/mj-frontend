@@ -6,6 +6,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.auth0.com/js/lock/10.4/lock.min.js"></script>
+    <script>
+      var lock = new Auth0Lock('7u7Gzi9bGHz8CufkopGLxTYkFbI5eWAA', 'mejelly.eu.auth0.com', {
+        auth: {
+          redirectUrl: 'http://localhost:3000/auth/auth0/callback',
+          responseType: 'code',
+          params: {
+            scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+          }
+        }
+      });
+    </script>
   </head>
 
   <body>
@@ -14,7 +26,7 @@
       <div class="col-lg-6 col-xs-12">
         MeJelly
       </div>
-      <div class="col-lg-6 col-xs-12 text-right">Login</div>
+      <div class="col-lg-6 col-xs-12 text-right"><button onclick="lock.show();">Login</button></div>
     </div>
 
     <%= yield %>
